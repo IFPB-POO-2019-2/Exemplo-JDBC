@@ -9,12 +9,12 @@ public class ConFactory {
 
     private Connection connection;
 
-    public Connection getConnection() throws SQLException {
-        String url = "jdbc:postgresql://localhost/test";
+    public Connection getConnection() throws SQLException, ClassNotFoundException {
+        Class.forName("org.postgresql.Driver");
+        String url = "jdbc:postgresql://localhost/postgres";
         Properties props = new Properties();
-        props.setProperty("user", "fred");
-        props.setProperty("password", "secret");
-        props.setProperty("ssl", "true");
+        props.setProperty("user", "postgres");
+        props.setProperty("password", "postgres");
         connection = DriverManager.getConnection(url, props);
         return connection;
     }
