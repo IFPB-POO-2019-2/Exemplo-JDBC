@@ -1,5 +1,6 @@
 import database.ConFactory;
 
+import java.io.IOException;
 import java.sql.SQLException;
 
 public class Main {
@@ -12,6 +13,8 @@ public class Main {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
