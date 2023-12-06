@@ -8,6 +8,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UsuarioDao {
 
@@ -36,6 +38,22 @@ public class UsuarioDao {
             return new Usuario(email, senha);
         }
         return null;
+    }
+
+    public List<Usuario> listarUsuarios() throws SQLException {
+        PreparedStatement statement = connection
+                .prepareStatement("SELECT * FROM usuario");
+
+        ResultSet resultSet = statement.executeQuery();
+
+        List<Usuario> usuarios = new ArrayList<>();
+
+        while(resultSet.next()){
+            String email = resultSet.getString("email");
+            String senha = resultSet.getString("senha");
+            usuarios.add(new Usuario(email, senha));
+        }
+        return usuarios;
     }
 
 }

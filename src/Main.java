@@ -16,7 +16,9 @@ public class Main {
 //                System.out.println("Falha");
 //            }
 
-            System.out.println(dao.buscarPorEmail("joao@gmail.com"));
+//            System.out.println(dao.buscarPorEmail("joao@gmail.com"));
+
+            System.out.println(dao.listarUsuarios());
 
         } catch (SQLException e) {
             System.out.println("Falha na operação do banco");
