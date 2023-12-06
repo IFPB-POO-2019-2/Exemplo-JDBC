@@ -1,21 +1,28 @@
-import database.ConFactory;
+import dao.UsuarioDao;
+import model.Usuario;
 
 import java.io.IOException;
 import java.sql.SQLException;
 
 public class Main {
     public static void main(String[] args) {
-        ConFactory conFactory = new ConFactory();
+
         try {
-            if(conFactory.getConnection()!=null){
-                System.out.println("Conectado");
+            UsuarioDao dao = new UsuarioDao();
+
+            if(dao.salvar(new Usuario("joao@gmail.com", "123456"))){
+                System.out.println("Salvo");
+            }else{
+                System.out.println("Falha");
             }
+
         } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
+            System.out.println("Falha ao salvar");
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            System.out.println("Falha na leitura do arquivo de configurações");
+        } catch (ClassNotFoundException e) {
+            System.out.println("Falha no Driver");
         }
+
     }
 }
